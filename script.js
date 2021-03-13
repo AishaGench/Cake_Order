@@ -96,9 +96,12 @@ const checkStock = (resolvedValue) => {
 async function orderSync(param){
 
   try {
-    
+    let orderCheking = await checkOrder(param);
+    let orderPayment = await payment(orderCheking);
+    let orderStock = await checkStock(orderPayment);
+    console.log(orderStock);
   } catch (error) {
-    
+    console.log(error);
   }
 
 }
@@ -107,14 +110,15 @@ async function orderSync(param){
 orderBtn.onclick = ()=>{
   const order = [selectCake.value, amountCake.value];
 
-  checkOrder(order).then((res)=>{
-    return payment(res);
-  }).then((res) =>{
-    return checkStock(res)
-  }).then((res)=>{
-    console.log(res)
-  }).catch((val) =>{
-    console.log(val)
-  })
+  // checkOrder(order).then((res)=>{
+  //   return payment(res);
+  // }).then((res) =>{
+  //   return checkStock(res)
+  // }).then((res)=>{
+  //   console.log(res)
+  // }).catch((val) =>{
+  //   console.log(val)
+  // })
+  orderSync(order);
 
 }
