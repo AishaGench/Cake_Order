@@ -38,7 +38,7 @@ let stockControl = patiseria[order[0]].stock;
 let cost = patisserie[order[0]].price * order[1];
 
 if(stockControl >= order[1]){
-  console.log(`Stock is enough, your total is ${cost}.`)
+  console.log(`Stock is enough, your total is ${cost}.Press 1 if it is ok!!!`)
 resolve([order,cost])
 }else{
 reject(`not enough`)
@@ -49,6 +49,7 @@ reject(`not enough`)
 };
 
 const payment = (resolvedValue) => {
+
   const order = resolvedValue[0];
   const cost =resolvedValue[1];
 
@@ -72,6 +73,7 @@ const payment = (resolvedValue) => {
 }
 
 const checkStock = (resolvedValue) => {
+
    const order = resolvedValue[0];
   const remained =resolvedValue[1];
 
@@ -81,7 +83,9 @@ const checkStock = (resolvedValue) => {
 
       let stockRemained = patisserie[order].stock - remained;
       if(stockRemained <=2){
+
         resolve(`${order} stock is ${stockRemained} and it is critic`)
+
       }else{
         reject(`${order}'s stock enough.`)
       }
@@ -89,6 +93,9 @@ const checkStock = (resolvedValue) => {
   });
 };
 
+async function orderSync(param){
+  
+}
 
 
 orderBtn.onclick = ()=>{
