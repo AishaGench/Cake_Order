@@ -94,7 +94,13 @@ const checkStock = (resolvedValue) => {
 };
 
 async function orderSync(param){
-  
+
+  try {
+    
+  } catch (error) {
+    
+  }
+
 }
 
 
